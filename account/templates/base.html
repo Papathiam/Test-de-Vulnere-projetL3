@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Accueil TDSISecurity</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+    body{
+        background-image: url('');
+    }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {background-color: #f1f1f1}
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown{
+            color:darkgray;
+            margin-top: 15px;
+        }
+        .for {
+            margin-top: 10%;
+            margin-left: 23%;
+        }
+        
+        .fore {
+            margin-top: 5%;
+            margin-left: 23%;
+            border-radius: 1%;
+            width: 56%;
+            background-color: #fff;
+            border: 3px solid #c5c5c5;
+            margin-bottom: 2em;
+            padding: 1em;
+            box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.6);
+        }
+
+        .ml15 {
+            font-weight: 800;
+            font-size: 1.3em;
+        }
+
+        .ml15 .word {
+            display: inline-block;
+            line-height: 1em;
+            color: white;
+            font-family: Bodoni MT;
+        }
+        .word{
+            margin-top: 5px;
+            font-size: 19px
+        }
+        .main-footer {
+            background-color: #34475E;
+            color: white;
+            width: 100%;
+            height: auto;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+    </style>
+</head>
+
+<body>
+    <nav class="navbar  navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <h4 class="ml15">
+                        <span class="word">TDSI</span>
+                        <span class="word">Security</span>&nbsp;&nbsp;
+                </h4>        
+            </div>
+            <ul class="nav navbar-nav mr-auto">      
+                <li class="active"><a href="{% url 'index' %}"><span class="glyphicon glyphicon-home"> </span> Accueil</a></li>
+                {% if user.is_authenticated   %}
+                    {% if user.username == "thiam" or user.username == "bamba"  %}
+
+                        <li><a href="{% url 'scanReseau' %}">Scan Reseau</a></li>
+                        <li>
+                        <div class="dropdown">
+                            <p class="">Scan Systeme</p>
+                            <div class="dropdown-content">
+                                <a href="{% url 'scan' %}">Scan Port</a>
+                                <a href="{% url 'scanSimple' %}">System et ports</a>
+                                <a href="{% url 'scanAgressif' %}">Scan agressif</a>
+                            </div>
+                        </div>
+                        </li>
+                        <li>
+                            <div class="dropdown">
+                            <p class="">&nbsp;&nbsp;Scan web</p>
+                                <div class="dropdown-content">
+                                    <a href="{% url 'collectweb' %}">collecte d'informations</a>
+                                    <a href="{% url 'pentestweb' %}">Analyse de vulnérabilites</a>
+                                </div>
+                            </div>   
+                        </li>
+
+                    {% endif %}
+                    <li><a href="{% url 'Apropos' %}">A propos</a></li>
+                    <li><a href="{% url 'show' %}" >Blog</a></li>
+
+                    <li style="position:absolute;right:0;"><a href="{% url 'logout' %}" style="color: white"><span class="glyphicon glyphicon-off"></span> Deconnexion</a></li>
+                {% else %}
+                <li><a href="{% url 'Apropos' %}">A propos</a></li>
+                <li><a href="{% url 'show' %}" >Blog</a></li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{% url 'register' %}"><span class="glyphicon glyphicon-user"></span> S'inscrire</a></li>
+                <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> S'identifier</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav><br><br><br><br>
+    
+    {% block body %}
+     {% endblock %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+    <script type="text/javascript">
+        anime.timeline({loop: true})
+        .add({
+            targets: '.ml15 .word',
+            scale: [14,1],
+            opacity: [0,1],
+            easing: "easeOutCirc",
+            duration: 800,
+            delay: function(el, i) {
+            return 800 * i;
+            }
+        }).add({
+            targets: '.ml15',
+            opacity: 0,
+            duration: 1000,
+            easing: "easeOutExpo",
+            delay: 1000
+        });
+</script>
+
+</body>
+<div class="main-footer">
+        <div class="col-xs-4 col-md-4">
+         <!--    <p>
+              Papa et Khadim Ous
+            </p> -->
+        </div>
+        <div class="col-xs-6 col-md-6">
+          <div id="Copyright">
+            <p>
+              Copyright © 2019 TDSI Security - Tous Droits Réservés
+            </p>
+          </div>
+        </div>
+        <div class="row">
+        </div>
+      </div>
+</html>

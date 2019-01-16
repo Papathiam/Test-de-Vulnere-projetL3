@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block body %}
+<Scénario  src = " https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.debug.js "  intégrité = " SHA384-THVO / sM0mFD9h7dfSndI6TS0PgAGavwKvB5hAxRRvc0o9cPLohB0wb / PTA7LdUHs "  crossorigin = " anonyme " > </script>
+<script  src = "https://unpkg.com/jspdf@latest/dist/jspdf.min.js"> </script>
+    <div class="row" id="row">
+
+
+    <div class="container resultat">
+        </br>
+        <h6 class="text-center">Cible {{target}} : Resultat du scan de system simple</h6>
+        </br>
+         {% if erreur%}
+         <p style="color: red !important;">{{erreur}}</p>
+        {% else %}
+      {% if resultat %}
+<a href="javascript: gen_pdf()" style="float: right;" class="btn btn-default">Imprimer !!</a><br><br>
+
+    <table id="tab" class="table table-dark table-striped text-light" border="1">
+        <thead class="thead-dark">
+            <tr>
+              <th scope="col">Port</th>
+              <th scope="col">State</th>
+              <th scope="col">name</th>
+              <th scope="col">Service</th>
+              <th scope="col">Version</th>
+            </tr>
+          </thead>
+  
+          <tbody>
+          {% for port in resultat %}
+            <tr>
+              <td>{{ port.port }}</td>
+              <td>{{ port.state }}</td>
+              <td>{{ port.name }}</td>
+              <td>{{ port.product }}</td>
+              <td>{{ port.version }}</td>
+            </tr>
+          {% endfor %}
+          </tbody>
+      </table><br><br>
+
+
+          {% else %}
+              <p>Aucun port ouvert</p>
+          {% endif %}
+      {% endif %}
+  <script type="text/javascript" src="html2canvas.js"></script>
+  <script>
+    function gen_pdf(){
+    var doc = new jsPDF('landscape');
+    doc.fromHTML($('#row').get(0), 40,40,{
+       'width' :1200 });
+
+     
+      doc.save('scan.pdf');
+      }
+    </script>
+
+
+{% endblock %}

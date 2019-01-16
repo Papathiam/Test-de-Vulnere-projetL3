@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block body %}
+
+    <div class="row">
+        <div class="col-md-3"></br></br></br>
+                <div class="card" style="width: 18rem;">
+                        <div class="card-header">
+                            <h2 class="text-center">Pentest Systeme </h2>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item"> <a class="nav-link" href="{% url 'collecte' %}">Collecte d'informations</a></li>
+                        </ul>
+                      </div>
+        </div>
+            <div class="container col-md-6">
+                <h4 class="text-center">Collecte d'informations</h4> </br>
+        <div class="dropdown">
+            <table style="width:100%; background-color: #dddddd ">
+        <tbody>
+          <tr>
+            <td>Type Scan:</td>
+            <td><a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria -haspopup="true" aria-expanded="false">
+                Choisir</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="{% url 'scan' %}">scan Ports</a>
+                <a class="dropdown-item" href="{% url 'scanReseau' %}">Découverte Réseau</a>
+        </div>
+            </td>
+          </tr>
+        </tbody>
+      </table></br>
+        </div>
+
+
+{% endblock  %}

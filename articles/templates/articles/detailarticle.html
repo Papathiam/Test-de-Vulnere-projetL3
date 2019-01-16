@@ -1,0 +1,63 @@
+ {% extends 'base.html' %} {% block body %}
+    <style>
+        .username{
+            float: right;
+            margin-top: -20px;
+            margin-right: 50px
+        }
+        .container{
+            margin-top: -20px;
+        }
+
+        }
+        .dot {
+            height: 14px;
+            width: 14px;
+            background-color: green;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .sp{
+            background-color:tan;
+            width: 10%;
+            height: 800%;
+            border-radius: 30%;
+        }
+        .spp{
+            height: 49%;
+        }
+    
+    </style>
+
+    <div class="container">
+    <div class="">
+
+        <div class="col-sm-12 ">
+                    <a href="{% url 'show' %}" class="btn btn-default">Retour aux articles!!</a>
+
+            <div class="card ">
+                <div class="card-body">
+                    
+                    <h3 class="card-title">{{ articles.titre }}</h3>
+
+                    <img class="card-img-top" src="{{ articles.image.url }}" style="width: 300px;height: 180px;" alt="Card image cap">
+                    <p class="card-text"><br>{{ articles.body}}</p>
+                    <p><span style="color: blue" class ="glyphicon glyphicon-calendar"> </span> {{ articles.created }}</p>
+                </div>
+            </div>
+            <hr>
+<!--             <h2>Nombre de commentaires :{{ articles.comments.all |length }}</h2>
+ -->            <a href="{% url 'addComment' id=articles.id %}" class="btn btn-primary">Commenter L'article!!</a>
+            {% for comment in articles.comments.all %}
+                <h3><span class="glyphicon glyphicon-user"> </span> {{ comment.user }}</h3>
+                <i>{{ comment.body }}</i>
+
+                <p>commenté le {{ comment.created }}</p>
+                {% empty %}
+                <p>Pas de commentaire</p>
+                {% endfor %}
+         </div>
+    </div>
+
+</div><br><br><br>
+{% endblock %}

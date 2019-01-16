@@ -1,0 +1,23 @@
+
+Starting Nmap 7.60 ( https://nmap.org ) at 2018-10-10 18:52 UTC
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.0000050s latency).
+Not shown: 85 closed ports
+PORT     STATE SERVICE
+21/tcp   open  ftp
+22/tcp   open  ssh
+25/tcp   open  smtp
+53/tcp   open  domain
+80/tcp   open  http
+111/tcp  open  rpcbind
+139/tcp  open  netbios-ssn
+143/tcp  open  imap
+389/tcp  open  ldap
+443/tcp  open  https
+445/tcp  open  microsoft-ds
+631/tcp  open  ipp
+2049/tcp open  nfs
+3306/tcp open  mysql
+8000/tcp open  http-alt
+
+Nmap done: 1 IP address (1 host up) scanned in 1.55 seconds

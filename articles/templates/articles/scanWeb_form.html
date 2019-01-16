@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block bread %}
+<h1 class="text-center"  style="color: #347CC5 !important;">Outil de test de d'intrusion de Systèmes et d'applications web</h1>
+{% endblock bread %}
+{% block title %}
+<div>
+    {% load static %}
+    <div class="row">
+        <div class="col-md-3"></br></br></br>
+                <div class="card" style="width: 18rem;">
+                        <div class="card-header">
+                            <h2 class="text-center">Pentest Web</h2>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item"> <a class="nav-link" href="{% url 'collecte' %}">Collecte d'informations</a></li>
+                          <li class="list-group-item"><a class="nav-link" href="{% url 'analyse' %}">Analyse de vulnérabilités</a></li>
+                          <li class="list-group-item"><a class="nav-link" href="{% url 'exploit' %}">Exploitation/Post-exploitation</a></li>
+                        </ul>
+                      </div>
+        </div>
+    <div class="col-md-3">
+            <img src="{% static 'images/pentest3.jpg' %}" alt="" class="img-responsive">
+        </div>
+            <div class="container col-md-6">
+                <h4 class="text-center">Collecte d'informations</h4> </br>
+        <h2>{{col}}</h2>
+        <div class="dropdown">
+            <table style="width:100%; background-color: #dddddd ">
+        <tbody>
+          <tr>
+            <td>Type Scan :</td>
+            <td><a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria -haspopup="true" aria-expanded="false">
+                Choisir</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="{% url 'scan' %}">scan Ports</a>
+                <a class="dropdown-item" href="{% url 'scanReseau' %}">Découverte Réseau</a>
+        </div>
+            </td>
+          </tr>
+        </tbody>
+      </table></br>
+        </div>
+
+
+{% endblock title %}
+{% block content %}
+<div class="container">
+        <h5 class="text-center">Scan de ports</h5>
+        <p>Entrer une adresse IP:</p>
+        <form  method="post">
+                {% csrf_token %}
+            <div class="form-group">
+                {{ form }}
+            </div>
+            <input type="submit" value="Scan" class="btn btn-outline-secondary">
+
+        </form>
+</div>
+
+{% endblock content %}
+                </div>
+    </div>
+
+</div>
+

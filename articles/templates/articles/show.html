@@ -1,0 +1,71 @@
+ {% extends 'base.html' %} {% block body %}
+    <style>
+        .username{
+            float: right;
+            margin-top: -20px;
+            margin-right: 50px
+        }
+        .container{
+            margin-top: -20px;
+        }
+        .dot {
+            height: 14px;
+            width: 14px;
+            background-color: green;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .sp{
+            background-color:tan;
+            width: 10%;
+            height: 800%;
+            border-radius: 30%;
+        }
+        .spp{
+            height: 49%;
+        }
+        .zoom {
+            padding: 2px;
+            background-color:  ;
+            transition: transform .01s;
+            margin: 0 auto;
+            border-radius: 3%
+        }
+
+        .zoom:hover {
+            -ms-transform: scale(1.03); /* IE 9  0.9 */
+            -webkit-transform: scale(1.03); /* Safari 3-8 */
+            transform: scale(1.03);
+        }
+    
+    </style>
+
+    <span class="container">
+        {% if user.is_authenticated %}
+        <h3 class="username "><span class="dot"></span>   <span class="glyphicon glyphicon-user"> </span> {{ user.username }}</h3>
+        <a href="{% url 'addArticle' %}" ><span style="margin-left: 8%" class="btn btn-default">Creer un article</span></a>
+        {% endif %} 
+    </span><br>
+
+    <div class="container">
+    <div class="">
+        {% for articles in articles %}
+        <div class="col-sm-4 ">
+            <div class="card zoom">
+                <div class="card-body">
+                    <h3 class="card-title">{{ articles.titre }}</h3>
+                    <img class="card-img-top " src="{{ articles.image.url }}" style="width: 300px;height: 180px;" alt="Card image cap">
+                    <p class="card-text "><br>{{ articles.body|truncatechars:300 }}</p>
+                    <a href="{{ articles.detailarticle }}" class="btn btn-primary ">Lire la suite</a>
+                    <p class="card-text">
+                    <p class="text-muted"><span style="color: blue" class ="glyphicon glyphicon-calendar"> </span> {{ articles.created |date:"D d M Y H:i" }}</p></p>
+
+                </div>
+            </div>
+            <hr>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}
